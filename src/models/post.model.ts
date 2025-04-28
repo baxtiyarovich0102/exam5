@@ -25,7 +25,12 @@ const Post = sequelize.define(
 		user_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-		}
+		},
+		
+		views: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0, 
+		  },
 	},
 	{
 		tableName: 'posts',
