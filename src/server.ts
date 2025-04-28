@@ -1,10 +1,13 @@
 import { errorHandler } from "./utils/errorHandler"
+import {errorController} from "./controllers/err.controller"
 import { config } from "dotenv";
 import { sequelize } from "./config/db.config";
 import express, { Response } from "express";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.route";
+import userRouter from "./routes/user.route"
 import "./models/ref.model"
+
 
 config();
 
@@ -19,7 +22,9 @@ app.use(cookieParser());
 })();
 
 app.use('/auth', authRouter)
+app.use(userRouter)
 
+app.use(errorController)
 app.use(errorHandler)
 app.use((err: any, res: Response) => {
   const status = err.status || 500;
